@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+
+Name: projetjeudes15.graphic_components.shape.class
+Java-Bean: True
+
+Name: projetjeudes15.graphic_components.Coin.class
+Java-Bean: True
