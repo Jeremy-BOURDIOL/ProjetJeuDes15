@@ -6,6 +6,7 @@ package projetjeudes15.graphic_components;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -43,6 +44,7 @@ public class Coin extends JLayeredPane {
         shp.setColor(BACKGROUND_COLOR);
         add(shp, DEFAULT_LAYER);
         lbl = new JLabel("Text");
+        lbl.setFont(new Font(lbl.getFont().getFontName(), Font.PLAIN, 20));
         lbl.setForeground(TEXT_COLOR);
         lbl.setHorizontalAlignment(SwingConstants.CENTER);
         lbl.setVerticalAlignment(SwingConstants.CENTER);
@@ -130,15 +132,17 @@ public class Coin extends JLayeredPane {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                firePropertyChange("TEXT", evt.getOldValue(), evt.getNewValue());
+                firePropertyChange("TEXT", evt.getOldValue(),evt.getNewValue());
             }
         });
         
-        lbl.addPropertyChangeListener("foreground", new PropertyChangeListener() {
+        lbl.addPropertyChangeListener("foreground", 
+                new PropertyChangeListener() {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                firePropertyChange("TEXT_COLOR", evt.getOldValue(), evt.getNewValue());
+                firePropertyChange("TEXT_COLOR", evt.getOldValue(), 
+                                                            evt.getNewValue());
             }
         });
         
@@ -146,7 +150,8 @@ public class Coin extends JLayeredPane {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                firePropertyChange("SHAPE_COLOR", evt.getOldValue(), evt.getNewValue());
+                firePropertyChange("SHAPE_COLOR", evt.getOldValue(), 
+                                                            evt.getNewValue());
             }
         });
     }

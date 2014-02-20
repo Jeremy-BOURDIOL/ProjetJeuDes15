@@ -21,16 +21,18 @@ public class CoinBeanInfo extends SimpleBeanInfo {
 
         return beanDescriptor;     }//GEN-LAST:BeanDescriptor
     // Property identifiers//GEN-FIRST:Properties
-    private static final int PROPERTY_shapeType = 0;
-    private static final int PROPERTY_text = 1;
-    private static final int PROPERTY_textColor = 2;
+    private static final int PROPERTY_backgroundColor = 0;
+    private static final int PROPERTY_shapeType = 1;
+    private static final int PROPERTY_text = 2;
+    private static final int PROPERTY_textColor = 3;
 
     // Property array 
     /*lazy PropertyDescriptor*/
     private static PropertyDescriptor[] getPdescriptor(){
-        PropertyDescriptor[] properties = new PropertyDescriptor[3];
+        PropertyDescriptor[] properties = new PropertyDescriptor[4];
     
         try {
+            properties[PROPERTY_backgroundColor] = new PropertyDescriptor ( "backgroundColor", projetjeudes15.graphic_components.Coin.class, "getBackgroundColor", "setBackgroundColor" ); // NOI18N
             properties[PROPERTY_shapeType] = new PropertyDescriptor ( "shapeType", projetjeudes15.graphic_components.Coin.class, "getShapeType", "setShapeType" ); // NOI18N
             properties[PROPERTY_text] = new PropertyDescriptor ( "text", projetjeudes15.graphic_components.Coin.class, "getText", "setText" ); // NOI18N
             properties[PROPERTY_textColor] = new PropertyDescriptor ( "textColor", projetjeudes15.graphic_components.Coin.class, "getTextColor", "setTextColor" ); // NOI18N
