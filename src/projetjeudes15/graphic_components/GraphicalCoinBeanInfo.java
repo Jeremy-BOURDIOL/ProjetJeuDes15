@@ -10,7 +10,7 @@ import java.beans.*;
  *
  * @author bourdije
  */
-public class CoinBeanInfo extends SimpleBeanInfo {
+public class GraphicalCoinBeanInfo extends SimpleBeanInfo {
 
     // Bean descriptor//GEN-FIRST:BeanDescriptor
     /*lazy BeanDescriptor*/

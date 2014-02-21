@@ -6,6 +6,11 @@ package projetjeudes15.graphic_components;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import projetjeudes15.models.Coin;
@@ -37,7 +42,9 @@ public class GridDisplay extends JPanel{
     }
     
     public void setModel(Jeu15Model newModel) {
+        System.out.println("Got a new Model");
         model = newModel;
+        addPropertyChangers();
         loadModel();
     }
     public Jeu15Model getModel() {
@@ -45,10 +52,11 @@ public class GridDisplay extends JPanel{
     }
 
     private void loadModel() {
+        System.out.println("Loading");
         this.removeAll();
         ArrayList<Coin> elems = model.getRemainningCoins();
         for(int i = 0; i < 9; i++) {
-            for(Coin c : elems) {
+            for(final Coin c : elems) {
                 if(c.getValue() == coinsOrder[i]) {
                     GraphicalCoin gc = new GraphicalCoin();
                     gc.setText(""+c.getValue());
@@ -58,10 +66,45 @@ public class GridDisplay extends JPanel{
                     }
                     else { 
                         gc.setBackgroundColor(Color.GREEN);
+                        gc.addMouseListener(new MouseListener() {
+
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                System.out.println("Click coin "+c.getValue());
+                                model.selectPion(c);
+                            }
+
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+                            }
+
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+                            }
+
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+                            }
+
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+                            }
+                        });
                     }
                     this.add(gc);
                 }
             }
         }
+        revalidate();
+    }
+        
+    private void addPropertyChangers() {
+        model.addPropertyChangeListener("coin_selected", 
+                                        new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                loadModel();
+            }
+        });
     }
 }

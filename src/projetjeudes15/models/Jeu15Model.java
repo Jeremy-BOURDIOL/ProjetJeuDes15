@@ -22,6 +22,8 @@ public class Jeu15Model {
     
     private ArrayList<Coin> remainningCoins;
     private ArrayList<PlayerModel> players;
+    private PlayerModel currentPlayer;
+    private int nbMvmnt;
     
     private Jeu15Model() {
         this(2);
@@ -34,14 +36,33 @@ public class Jeu15Model {
         }
         players = new ArrayList<>();
         Random rand = new Random();
+        float r, g, b;
         for(int i = 0; i < nbPlayer; i++) {
-            float r = rand.nextFloat();
-            float g = rand.nextFloat();
-            float b = rand.nextFloat();
+            r = rand.nextFloat();
+            g = rand.nextFloat();
+            b = rand.nextFloat();
             players.add(new PlayerModel("Joueur "+i, new Color(r, g, b)));
         }
+        nbMvmnt = 0;
+        nextPlayer();
     }
 
+    public void selectPion(Coin c) {
+        for( Coin co : remainningCoins) {
+            if(c.getValue() == co.getValue()) {
+                co.setOwner(currentPlayer);
+            }
+        }
+        nbMvmnt++;
+        nextPlayer();
+        support.firePropertyChange("coin_selected", null, null);
+        System.out.println("Fin du tour");
+    }
+    
+    public void nextPlayer() {
+        currentPlayer = players.get(nbMvmnt%players.size());
+    }
+    
     public ArrayList<Coin> getRemainningCoins() {
         return remainningCoins;
     }
