@@ -51,6 +51,7 @@ public class Jeu15Model {
         for( Coin co : remainningCoins) {
             if(c.getValue() == co.getValue()) {
                 co.setOwner(currentPlayer);
+                currentPlayer.addACoin(co);
             }
         }
         nbMvmnt++;

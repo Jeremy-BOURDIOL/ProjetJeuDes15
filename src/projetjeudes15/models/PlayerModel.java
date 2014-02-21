@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class PlayerModel {
     
     private static final Logger LOG = Logger.getLogger(PlayerModel.class.getName());
-    private ArrayList<Integer> myCoins;
+    private ArrayList<Coin> myCoins;
     private String myName;
     private Color myColor;
     
@@ -25,11 +25,11 @@ public class PlayerModel {
         myColor = playerColor;
     }
 
-    public ArrayList<Integer> getMyCoins() {
+    public ArrayList<Coin> getMyCoins() {
         return myCoins;
     }
 
-    public void setMyCoins(ArrayList<Integer> myCoins) {
+    public void setMyCoins(ArrayList<Coin> myCoins) {
         this.myCoins = myCoins;
     }
 
@@ -47,6 +47,10 @@ public class PlayerModel {
 
     public void setMyColor(Color myColor) {
         this.myColor = myColor;
+    }
+
+    void addACoin(Coin co) {
+        myCoins.add(co);
     }
     
 }
