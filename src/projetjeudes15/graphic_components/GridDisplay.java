@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import projetjeudes15.models.Coin;
@@ -25,7 +24,6 @@ public class GridDisplay extends JPanel{
     private GridLayout layout;
     private Integer[] coinsOrder = {8,3,4,1,5,9,6,7,2};
     private Jeu15Model model;
-    
     
     public GridDisplay() {
         layout = new GridLayout(3,3);

@@ -87,10 +87,17 @@ public class Shape extends JComponent {
     
     @Override
     public boolean contains(int x, int y) {
-        double a = getWidth()/2;
-        double b = getHeight()/2;
-        double dx = (x-a);
-        double dy = (y-b);
-        return (((dx*dx)/(a*a) + (dy*dy)/(b*b)) <= 1.0);
+        switch(myShape) {
+            case OVALE :
+                double a = getWidth()/2;
+                double b = getHeight()/2;
+                double dx = (x-a);
+                double dy = (y-b);
+                return (((dx*dx)/(a*a) + (dy*dy)/(b*b)) <= 1.0);
+            case RECTANGLE :
+                return (x < getWidth() && y < getHeight());
+            default:
+                return false;
+        }
     }
 }
