@@ -5,6 +5,8 @@
 package projetjeudes15.models;
 
 import java.awt.Color;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -16,7 +18,9 @@ import java.util.logging.Logger;
 public class Jeu15Model {
     
     private static final Logger LOG = Logger.getLogger(Jeu15Model.class.getName());
-    private ArrayList<Integer> remainningCoins;
+    private PropertyChangeSupport support = new PropertyChangeSupport(this);
+    
+    private ArrayList<Coin> remainningCoins;
     private ArrayList<PlayerModel> players;
     
     private Jeu15Model() {
@@ -25,8 +29,8 @@ public class Jeu15Model {
     
     public Jeu15Model(int nbPlayer) {
         remainningCoins = new ArrayList<>();
-        for(int i = 0; i < 9; i++) {
-            //players.add();
+        for(int i = 1; i < 10; i++) {
+            remainningCoins.add(new Coin(i));
         }
         players = new ArrayList<>();
         Random rand = new Random();
@@ -36,5 +40,40 @@ public class Jeu15Model {
             float b = rand.nextFloat();
             players.add(new PlayerModel("Joueur "+i, new Color(r, g, b)));
         }
+    }
+
+    public ArrayList<Coin> getRemainningCoins() {
+        return remainningCoins;
+    }
+
+    public void setRemainningCoins(ArrayList<Coin> remainningCoins) {
+        this.remainningCoins = remainningCoins;
+    }
+
+    public ArrayList<PlayerModel> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<PlayerModel> players) {
+        this.players = players;
+    }
+    
+    /* ---------------------PARTIE EVENEMENT--------------------------------- */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+    
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+    
+    public void addPropertyChangeListener(String s, 
+                                          PropertyChangeListener listener) {
+        support.addPropertyChangeListener(s, listener);
+    }
+    
+    public void removePropertyChangeListener(String s, 
+                                             PropertyChangeListener listener) {
+        support.removePropertyChangeListener(s, listener);
     }
 }

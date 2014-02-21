@@ -6,3 +6,6 @@ Java-Bean: True
 
 Name: projetjeudes15.graphic_components.Coin.class
 Java-Bean: True
+
+Name: projetjeudes15.graphic_components.GridDisplay.class
+Java-Bean: True

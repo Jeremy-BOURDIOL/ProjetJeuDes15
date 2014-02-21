@@ -15,7 +15,7 @@ public class CoinBeanInfo extends SimpleBeanInfo {
     // Bean descriptor//GEN-FIRST:BeanDescriptor
     /*lazy BeanDescriptor*/
     private static BeanDescriptor getBdescriptor(){
-        BeanDescriptor beanDescriptor = new BeanDescriptor  ( projetjeudes15.graphic_components.Coin.class , null ); // NOI18N//GEN-HEADEREND:BeanDescriptor
+        BeanDescriptor beanDescriptor = new BeanDescriptor  ( projetjeudes15.graphic_components.GraphicalCoin.class , null ); // NOI18N//GEN-HEADEREND:BeanDescriptor
 
         // Here you can add code for customizing the BeanDescriptor.
 
@@ -32,10 +32,10 @@ public class CoinBeanInfo extends SimpleBeanInfo {
         PropertyDescriptor[] properties = new PropertyDescriptor[4];
     
         try {
-            properties[PROPERTY_backgroundColor] = new PropertyDescriptor ( "backgroundColor", projetjeudes15.graphic_components.Coin.class, "getBackgroundColor", "setBackgroundColor" ); // NOI18N
-            properties[PROPERTY_shapeType] = new PropertyDescriptor ( "shapeType", projetjeudes15.graphic_components.Coin.class, "getShapeType", "setShapeType" ); // NOI18N
-            properties[PROPERTY_text] = new PropertyDescriptor ( "text", projetjeudes15.graphic_components.Coin.class, "getText", "setText" ); // NOI18N
-            properties[PROPERTY_textColor] = new PropertyDescriptor ( "textColor", projetjeudes15.graphic_components.Coin.class, "getTextColor", "setTextColor" ); // NOI18N
+            properties[PROPERTY_backgroundColor] = new PropertyDescriptor ( "backgroundColor", projetjeudes15.graphic_components.GraphicalCoin.class, "getBackgroundColor", "setBackgroundColor" ); // NOI18N
+            properties[PROPERTY_shapeType] = new PropertyDescriptor ( "shapeType", projetjeudes15.graphic_components.GraphicalCoin.class, "getShapeType", "setShapeType" ); // NOI18N
+            properties[PROPERTY_text] = new PropertyDescriptor ( "text", projetjeudes15.graphic_components.GraphicalCoin.class, "getText", "setText" ); // NOI18N
+            properties[PROPERTY_textColor] = new PropertyDescriptor ( "textColor", projetjeudes15.graphic_components.GraphicalCoin.class, "getTextColor", "setTextColor" ); // NOI18N
         }
         catch(IntrospectionException e) {
             e.printStackTrace();

@@ -21,10 +21,10 @@ import javax.swing.SwingConstants;
  *
  * @author bourdije
  */
-public class Coin extends JLayeredPane {
+public class GraphicalCoin extends JLayeredPane {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = 
-                                Logger.getLogger(Coin.class.getName());
+                                Logger.getLogger(GraphicalCoin.class.getName());
     
     private static final Color BACKGROUND_COLOR = Color.RED;
     private static final Color TEXT_COLOR = Color.WHITE;
@@ -38,7 +38,7 @@ public class Coin extends JLayeredPane {
     /**
      * Default constructor.
      */
-    public Coin() {
+    public GraphicalCoin() {
         setPreferredSize(new Dimension(50,50));
         shp = new Shape();
         shp.setColor(BACKGROUND_COLOR);
