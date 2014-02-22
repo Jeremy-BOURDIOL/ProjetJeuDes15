@@ -103,7 +103,6 @@ public class ListDisplay extends JPanel{
             mainCoinDisposal.add(gc);
         }
         
-        
         //Player part
         playersBoards.removeAll();
         for(PlayerModel p : model.getPlayers()){
@@ -120,6 +119,7 @@ public class ListDisplay extends JPanel{
             playersBoards.add(playerDisposal);
         }
         revalidate();
+        repaint();
     }
         
     private void addPropertyChangers() {
