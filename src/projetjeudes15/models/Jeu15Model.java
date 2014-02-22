@@ -41,7 +41,7 @@ public class Jeu15Model {
             r = rand.nextFloat();
             g = rand.nextFloat();
             b = rand.nextFloat();
-            players.add(new PlayerModel("Joueur "+i, new Color(r, g, b)));
+            players.add(new PlayerModel("Joueur "+(i+1), new Color(r, g, b)));
         }
         nbMvmnt = 0;
         nextPlayer();

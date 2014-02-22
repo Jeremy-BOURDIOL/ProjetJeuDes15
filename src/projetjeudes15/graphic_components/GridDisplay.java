@@ -40,7 +40,6 @@ public class GridDisplay extends JPanel{
     }
     
     public void setModel(Jeu15Model newModel) {
-        System.out.println("Got a new Model");
         model = newModel;
         addPropertyChangers();
         loadModel();
@@ -50,7 +49,6 @@ public class GridDisplay extends JPanel{
     }
 
     private void loadModel() {
-        System.out.println("Loading");
         this.removeAll();
         ArrayList<Coin> elems = model.getRemainningCoins();
         for(int i = 0; i < 9; i++) {
@@ -68,7 +66,6 @@ public class GridDisplay extends JPanel{
 
                             @Override
                             public void mouseClicked(MouseEvent e) {
-                                System.out.println("Click coin "+c.getValue());
                                 model.selectPion(c);
                             }
 

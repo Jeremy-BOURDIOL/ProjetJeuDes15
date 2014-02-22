@@ -49,7 +49,6 @@ public class ListDisplay extends JPanel{
     }
     
     public void setModel(Jeu15Model newModel) {
-        System.out.println("Got a new Model");
         model = newModel;
         addPropertyChangers();
         loadModel();
@@ -59,8 +58,6 @@ public class ListDisplay extends JPanel{
     }
 
     private void loadModel() {
-        System.out.println("Loading");
-        
         //Main disposal part
         mainCoinDisposal.removeAll();
         ArrayList<Coin> elems = model.getRemainningCoins();
@@ -79,7 +76,6 @@ public class ListDisplay extends JPanel{
 
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("Click coin "+c.getValue());
                         model.selectPion(c);
                     }
 
