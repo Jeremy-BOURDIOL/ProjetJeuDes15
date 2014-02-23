@@ -29,6 +29,7 @@ public class ListDisplay extends JPanel{
     private JPanel mainCoinDisposal;
     private JPanel playersBoards;
     private GridLayout playersLayout;
+    private PlayerModel player;
     
     public ListDisplay() {
         this.setLayout(new GridLayout(2, 1));
@@ -57,6 +58,14 @@ public class ListDisplay extends JPanel{
         return model;
     }
 
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
+    }
+
     private void loadModel() {
         //Main disposal part
         mainCoinDisposal.removeAll();
@@ -76,7 +85,9 @@ public class ListDisplay extends JPanel{
 
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        model.selectPion(c);
+                        if(model.getCurrentPlayer().equals(player)) {
+                            model.selectPion(c);
+                        }
                     }
 
                     @Override

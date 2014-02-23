@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import projetjeudes15.models.Coin;
 import projetjeudes15.models.Jeu15Model;
+import projetjeudes15.models.PlayerModel;
 
 /**
  *
@@ -25,6 +26,7 @@ public class GridDisplay extends JPanel{
     private GridLayout layout;
     private Integer[] coinsOrder = {8,3,4,1,5,9,6,7,2};
     private Jeu15Model model;
+    private PlayerModel player;
     
     public GridDisplay() {
         layout = new GridLayout(3,3);
@@ -49,6 +51,14 @@ public class GridDisplay extends JPanel{
         return model;
     }
 
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
+    }
+
     private void loadModel() {
         this.removeAll();
         ArrayList<Coin> elems = model.getRemainningCoins();
@@ -67,7 +77,9 @@ public class GridDisplay extends JPanel{
 
                             @Override
                             public void mouseClicked(MouseEvent e) {
-                                model.selectPion(c);
+                                if(model.getCurrentPlayer().equals(player)) {
+                                    model.selectPion(c);
+                                }
                             }
 
                             @Override

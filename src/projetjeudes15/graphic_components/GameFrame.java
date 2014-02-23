@@ -117,6 +117,7 @@ public class GameFrame extends javax.swing.JFrame {
         this.setLayout(new GridLayout(1, 1));
         GridDisplay g = new GridDisplay();
         g.setModel(model);
+        g.setPlayer(player);
         this.add(g);
         this.setSize(new Dimension(300, 300));
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -126,6 +127,7 @@ public class GameFrame extends javax.swing.JFrame {
         this.setLayout(new GridLayout(1, 1));
         ListDisplay l = new ListDisplay();
         l.setModel(model);
+        l.setPlayer(player);
         this.add(l);
         this.setSize(new Dimension(600, 300));
     }//GEN-LAST:event_jButton2ActionPerformed
