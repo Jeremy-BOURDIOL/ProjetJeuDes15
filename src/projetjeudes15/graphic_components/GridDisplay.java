@@ -5,6 +5,7 @@
 package projetjeudes15.graphic_components;
 
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

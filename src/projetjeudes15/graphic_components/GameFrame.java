@@ -4,8 +4,13 @@
  */
 package projetjeudes15.graphic_components;
 
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import projetjeudes15.models.Jeu15Model;
 import projetjeudes15.models.PlayerModel;
 
@@ -17,6 +22,16 @@ public class GameFrame extends javax.swing.JFrame {
     private final Jeu15Model model;
     private final PlayerModel player;
 
+    private class WinnerDialog extends JDialog {
+        private WinnerDialog(String winnername) {
+            super();
+            this.setTitle("Gagnant");
+            this.add(new JLabel(winnername + " a gagné !"));
+            this.pack();
+            this.setVisible(true);
+        }
+    }
+    
     /**
      * Creates new form PlayFrame
      */
@@ -26,6 +41,14 @@ public class GameFrame extends javax.swing.JFrame {
         player = playermod;
         this.setTitle(player.getMyName());
         this.setVisible(true);
+        model.addPropertyChangeListener("got_winner", 
+                                        new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                PlayerModel p = (PlayerModel) evt.getNewValue();
+                new WinnerDialog(p.getMyName());
+            }
+        });
     }
 
     /**

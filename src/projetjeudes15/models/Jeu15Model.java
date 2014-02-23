@@ -24,6 +24,7 @@ public class Jeu15Model {
     private ArrayList<PlayerModel> players;
     private PlayerModel currentPlayer;
     private int nbMvmnt;
+    private boolean isFinished = false;
     
     private Jeu15Model() {
         this(2);
@@ -58,10 +59,40 @@ public class Jeu15Model {
         nextPlayer();
         support.firePropertyChange("coin_selected", null, null);
         System.out.println("Fin du tour");
+        checkWinner();
+    }
+
+    private void checkWinner() {
+        if (nbMvmnt == 9) {
+            int minDelta = 99;
+            PlayerModel winner = null;
+            for(PlayerModel p : players) {
+                int playerScore = p.computeScore();
+                if (playerScore == 0) {
+                    System.out.println("Send winner");
+                    support.firePropertyChange("got_winner", null, p);
+                    return;
+                }
+                else if (playerScore < minDelta) {
+                    winner = p;
+                    minDelta = playerScore;
+                }
+            }
+            support.firePropertyChange("got_winner", null, winner);
+        }
+        else if (nbMvmnt >= 5) {
+            for(PlayerModel p : players) {
+                if (p.computeScore() == 0) {
+                    System.out.println("Send winner");
+                    support.firePropertyChange("got_winner", null, p);
+                    return;
+                }
+            }
+        }
     }
     
     public void nextPlayer() {
-        currentPlayer = players.get(nbMvmnt%players.size());
+        setCurrentPlayer(players.get(nbMvmnt%players.size()));
     }
     
     public ArrayList<Coin> getRemainningCoins() {
@@ -78,6 +109,16 @@ public class Jeu15Model {
 
     public void setPlayers(ArrayList<PlayerModel> players) {
         this.players = players;
+    }
+
+    public PlayerModel getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(PlayerModel newPlayer) {
+        PlayerModel previousPlayer = currentPlayer;
+        this.currentPlayer = newPlayer;
+        support.firePropertyChange("player_chaged", previousPlayer, newPlayer);
     }
     
     /* ---------------------PARTIE EVENEMENT--------------------------------- */

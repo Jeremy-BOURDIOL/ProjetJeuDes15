@@ -52,5 +52,13 @@ public class PlayerModel {
     void addACoin(Coin co) {
         myCoins.add(co);
     }
+
+    public int computeScore() {
+        int score = 0;
+        for(Coin c : myCoins) {
+            score += c.getValue();
+        }
+        return Math.abs(score-15);
+    }
     
 }
