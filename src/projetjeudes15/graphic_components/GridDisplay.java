@@ -9,13 +9,10 @@ import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import javax.swing.JPanel;
+import projetjeudes15.controlers.CoinSelectedEvent;
+import projetjeudes15.controlers.CoinSelecterControler;
 import projetjeudes15.models.Coin;
-import projetjeudes15.models.Jeu15Model;
-import projetjeudes15.models.PlayerModel;
 
 /**
  *
@@ -38,6 +35,7 @@ public class GridDisplay extends Jeu15AbstracDisplay{
             gc.setBackgroundColor(Color.GREEN);
             this.add(gc);
         }
+        addCoinSelecterController(new CoinSelecterControler(this));
     }
 
     protected void loadModel() {
@@ -59,7 +57,9 @@ public class GridDisplay extends Jeu15AbstracDisplay{
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                 if(getModel().getCurrentPlayer().equals(getPlayer())) {
-                                    getModel().selectPion(c);
+                                    for(CoinSelecterControler s : getControllers()) {
+                                        s.coinSelected(new CoinSelectedEvent(this, c));
+                                    }
                                 }
                             }
 

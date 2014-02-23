@@ -11,6 +11,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import projetjeudes15.controlers.CoinSelectedEvent;
+import projetjeudes15.controlers.CoinSelecterControler;
 import projetjeudes15.models.Coin;
 import projetjeudes15.models.PlayerModel;
 
@@ -40,6 +42,7 @@ public class ListDisplay extends Jeu15AbstracDisplay{
         playersLayout = new GridLayout();
         playersBoards.setLayout(playersLayout);
         this.add(playersBoards);
+        addCoinSelecterController(new CoinSelecterControler(this));
     }
 
     protected void loadModel() {
@@ -62,7 +65,9 @@ public class ListDisplay extends Jeu15AbstracDisplay{
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         if(getModel().getCurrentPlayer().equals(getPlayer())) {
-                            getModel().selectPion(c);
+                            for(CoinSelecterControler s : getControllers()) {
+                                s.coinSelected(new CoinSelectedEvent(this, c));
+                            }
                         }
                     }
 

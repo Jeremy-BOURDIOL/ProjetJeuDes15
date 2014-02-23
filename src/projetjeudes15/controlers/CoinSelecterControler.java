@@ -4,11 +4,21 @@
  */
 package projetjeudes15.controlers;
 
+import projetjeudes15.graphic_components.Jeu15AbstracDisplay;
+
 /**
  *
  * @author bourdije
  */
-public interface CoinSelecterControler {
+public class CoinSelecterControler {
     
-    public void coinSelected (CoinSelectedEvent e);
+    private Jeu15AbstracDisplay view;
+    
+    public CoinSelecterControler(Jeu15AbstracDisplay v) {
+        view = v;
+    }
+    
+    public void coinSelected (CoinSelectedEvent e) {
+        view.getModel().selectPion(e.getSelectedCoin());
+    }
 }

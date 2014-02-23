@@ -6,7 +6,9 @@ package projetjeudes15.graphic_components;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import projetjeudes15.controlers.CoinSelecterControler;
 import projetjeudes15.models.Jeu15Model;
 import projetjeudes15.models.PlayerModel;
 
@@ -18,6 +20,7 @@ public abstract class Jeu15AbstracDisplay extends JPanel{
     
     private Jeu15Model model;
     private PlayerModel player;
+    private ArrayList<CoinSelecterControler> controlers = new ArrayList<>();
     
     public void setModel(Jeu15Model newModel) {
         model = newModel;
@@ -36,6 +39,17 @@ public abstract class Jeu15AbstracDisplay extends JPanel{
         this.player = player;
     }
     
+    public void addCoinSelecterController(CoinSelecterControler s) {
+        controlers.add(s);
+    }
+    
+    public void removeCoinSelecterController(CoinSelecterControler s) {
+        controlers.remove(s);
+    }
+    
+    public ArrayList<CoinSelecterControler> getControllers() {
+        return controlers;
+    }
     private void addPropertyChangers() {
         model.addPropertyChangeListener("coin_selected", 
                                         new PropertyChangeListener() {
