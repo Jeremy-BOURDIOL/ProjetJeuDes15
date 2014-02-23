@@ -5,31 +5,24 @@
 package projetjeudes15.graphic_components;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import projetjeudes15.models.Coin;
-import projetjeudes15.models.Jeu15Model;
 import projetjeudes15.models.PlayerModel;
 
 /**
  *
  * @author Jéjé
  */
-public class ListDisplay extends JPanel{
+public class ListDisplay extends Jeu15AbstracDisplay{
     
-    private Jeu15Model model;
     private JPanel mainCoinDisposal;
     private JPanel playersBoards;
     private GridLayout playersLayout;
-    private PlayerModel player;
     
     public ListDisplay() {
         this.setLayout(new GridLayout(2, 1));
@@ -48,28 +41,11 @@ public class ListDisplay extends JPanel{
         playersBoards.setLayout(playersLayout);
         this.add(playersBoards);
     }
-    
-    public void setModel(Jeu15Model newModel) {
-        model = newModel;
-        addPropertyChangers();
-        loadModel();
-    }
-    public Jeu15Model getModel() {
-        return model;
-    }
 
-    public PlayerModel getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(PlayerModel player) {
-        this.player = player;
-    }
-
-    private void loadModel() {
+    protected void loadModel() {
         //Main disposal part
         mainCoinDisposal.removeAll();
-        ArrayList<Coin> elems = model.getRemainningCoins();
+        ArrayList<Coin> elems = getModel().getRemainningCoins();
         for(final Coin c : elems) {
             GraphicalCoin gc = new GraphicalCoin();
             gc.setText(""+c.getValue());
@@ -85,8 +61,8 @@ public class ListDisplay extends JPanel{
 
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if(model.getCurrentPlayer().equals(player)) {
-                            model.selectPion(c);
+                        if(getModel().getCurrentPlayer().equals(getPlayer())) {
+                            getModel().selectPion(c);
                         }
                     }
 
@@ -112,7 +88,7 @@ public class ListDisplay extends JPanel{
         
         //Player part
         playersBoards.removeAll();
-        for(PlayerModel p : model.getPlayers()){
+        for(PlayerModel p : getModel().getPlayers()){
             JPanel playerDisposal = new JPanel();
             playerDisposal.setBorder(BorderFactory.createTitledBorder(
                                                                 p.getMyName()));
@@ -127,15 +103,5 @@ public class ListDisplay extends JPanel{
         }
         revalidate();
         repaint();
-    }
-        
-    private void addPropertyChangers() {
-        model.addPropertyChangeListener("coin_selected", 
-                                        new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                loadModel();
-            }
-        });
     }
 }

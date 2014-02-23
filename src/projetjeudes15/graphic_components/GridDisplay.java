@@ -21,12 +21,10 @@ import projetjeudes15.models.PlayerModel;
  *
  * @author Jéjé
  */
-public class GridDisplay extends JPanel{
+public class GridDisplay extends Jeu15AbstracDisplay{
     
     private GridLayout layout;
     private Integer[] coinsOrder = {8,3,4,1,5,9,6,7,2};
-    private Jeu15Model model;
-    private PlayerModel player;
     
     public GridDisplay() {
         layout = new GridLayout(3,3);
@@ -41,27 +39,10 @@ public class GridDisplay extends JPanel{
             this.add(gc);
         }
     }
-    
-    public void setModel(Jeu15Model newModel) {
-        model = newModel;
-        addPropertyChangers();
-        loadModel();
-    }
-    public Jeu15Model getModel() {
-        return model;
-    }
 
-    public PlayerModel getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(PlayerModel player) {
-        this.player = player;
-    }
-
-    private void loadModel() {
+    protected void loadModel() {
         this.removeAll();
-        ArrayList<Coin> elems = model.getRemainningCoins();
+        ArrayList<Coin> elems = getModel().getRemainningCoins();
         for(int i = 0; i < 9; i++) {
             for(final Coin c : elems) {
                 if(c.getValue() == coinsOrder[i]) {
@@ -77,8 +58,8 @@ public class GridDisplay extends JPanel{
 
                             @Override
                             public void mouseClicked(MouseEvent e) {
-                                if(model.getCurrentPlayer().equals(player)) {
-                                    model.selectPion(c);
+                                if(getModel().getCurrentPlayer().equals(getPlayer())) {
+                                    getModel().selectPion(c);
                                 }
                             }
 
@@ -104,15 +85,5 @@ public class GridDisplay extends JPanel{
             }
         }
         revalidate();
-    }
-        
-    private void addPropertyChangers() {
-        model.addPropertyChangeListener("coin_selected", 
-                                        new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                loadModel();
-            }
-        });
     }
 }
