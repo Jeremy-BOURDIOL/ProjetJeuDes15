@@ -49,17 +49,19 @@ public class Jeu15Model {
     }
 
     public void selectPion(Coin c) {
-        for( Coin co : remainningCoins) {
-            if(c.getValue() == co.getValue()) {
-                co.setOwner(currentPlayer);
-                currentPlayer.addACoin(co);
+        if(!isFinished) {
+            for( Coin co : remainningCoins) {
+                if(c.getValue() == co.getValue()) {
+                    co.setOwner(currentPlayer);
+                    currentPlayer.addACoin(co);
+                }
             }
+            nbMvmnt++;
+            nextPlayer();
+            support.firePropertyChange("coin_selected", null, null);
+            System.out.println("Fin du tour");
+            checkWinner();
         }
-        nbMvmnt++;
-        nextPlayer();
-        support.firePropertyChange("coin_selected", null, null);
-        System.out.println("Fin du tour");
-        checkWinner();
     }
 
     private void checkWinner() {
@@ -70,6 +72,7 @@ public class Jeu15Model {
                 int playerScore = p.computeScore();
                 if (playerScore == 0) {
                     System.out.println("Send winner");
+                    setIsFinished(true);
                     support.firePropertyChange("got_winner", null, p);
                     return;
                 }
@@ -78,12 +81,14 @@ public class Jeu15Model {
                     minDelta = playerScore;
                 }
             }
+            setIsFinished(true);
             support.firePropertyChange("got_winner", null, winner);
         }
         else if (nbMvmnt >= 5) {
             for(PlayerModel p : players) {
                 if (p.computeScore() == 0) {
                     System.out.println("Send winner");
+                    setIsFinished(true);
                     support.firePropertyChange("got_winner", null, p);
                     return;
                 }
@@ -119,6 +124,14 @@ public class Jeu15Model {
         PlayerModel previousPlayer = currentPlayer;
         this.currentPlayer = newPlayer;
         support.firePropertyChange("player_chaged", previousPlayer, newPlayer);
+    }
+
+    public boolean isIsFinished() {
+        return isFinished;
+    }
+
+    public void setIsFinished(boolean isFinished) {
+        this.isFinished = isFinished;
     }
     
     /* ---------------------PARTIE EVENEMENT--------------------------------- */
