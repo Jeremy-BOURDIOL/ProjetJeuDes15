@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
-import projetjeudes15.controlers.command_pattern.SelectCoinCmd;
+import projetjeudes15.models.command_pattern.SelectCoinCmd;
 
 /**
  *

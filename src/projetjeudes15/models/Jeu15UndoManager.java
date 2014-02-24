@@ -5,7 +5,7 @@
 package projetjeudes15.models;
 
 import java.util.Stack;
-import projetjeudes15.controlers.command_pattern.Jeu15Command;
+import projetjeudes15.models.command_pattern.Jeu15Command;
 
 /**
  *
