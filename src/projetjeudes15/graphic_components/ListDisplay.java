@@ -27,6 +27,7 @@ public class ListDisplay extends Jeu15AbstracDisplay{
     private GridLayout playersLayout;
     
     public ListDisplay() {
+        super();
         this.setLayout(new GridLayout(2, 1));
         mainCoinDisposal = new JPanel();
         mainCoinDisposal.setBorder(BorderFactory.createTitledBorder("Plateau"));

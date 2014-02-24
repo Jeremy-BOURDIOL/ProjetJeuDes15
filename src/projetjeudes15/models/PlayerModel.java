@@ -53,6 +53,10 @@ public class PlayerModel {
         myCoins.add(co);
     }
 
+    void removeACoin(Coin co) {
+        myCoins.remove(co);
+    }
+
     public int computeScore() {
         int score = 0;
         for(Coin c : myCoins) {

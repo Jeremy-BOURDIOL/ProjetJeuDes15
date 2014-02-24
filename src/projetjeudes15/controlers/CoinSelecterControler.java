@@ -21,4 +21,10 @@ public class CoinSelecterControler {
     public void coinSelected (CoinSelectedEvent e) {
         view.getModel().selectPion(e.getSelectedCoin());
     }
+    public void undo () {
+        view.getModel().undo();
+    }
+    public void redo () {
+        view.getModel().redo();
+    }
 }

@@ -24,6 +24,7 @@ public class GridDisplay extends Jeu15AbstracDisplay{
     private Integer[] coinsOrder = {8,3,4,1,5,9,6,7,2};
     
     public GridDisplay() {
+        super();
         layout = new GridLayout(3,3);
         layout.setHgap(3);
         layout.setVgap(3);
